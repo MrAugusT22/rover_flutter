@@ -21,7 +21,7 @@ class WelcomePage extends StatefulWidget {
 class _WelcomePageState extends State<WelcomePage>
     with TickerProviderStateMixin {
   static const _kToggleDuration = Duration(milliseconds: 300);
-  static const _kRotationDuration = Duration(seconds: 5);
+  static const _kRotationDuration = Duration(milliseconds: 1500);
 
   AnimationController _rotationController;
   AnimationController _scaleController;
@@ -128,35 +128,19 @@ class _WelcomePageState extends State<WelcomePage>
           child: Stack(
             alignment: Alignment.topCenter,
             children: [
-              // Blob(
-              //   color: Color(0xff4ac7b7), // color green
-              //   scale: _scale,
-              //   rotation: _rotation * 2 - 30, // offset angle from _rotation
-              // ),
-              // Blob(
-              //   color: Color(0xffa4a6f6), // color purple
-              //   scale: _scale,
-              //   rotation: _rotation * 3 - 45, // offset angle from _rotation
-              // ),
               Blob(
-                color: Color(0xff0092ff), // color blue
+                color: Colors.blue, // color blue
                 scale: _scale,
                 rotation: _rotation,
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    decoration:
-                        BoxDecoration(shape: BoxShape.circle, boxShadow: [
-                      BoxShadow(
-                        color: Colors.blue,
-                        blurRadius: 10,
-                        spreadRadius: 0.0,
-                      ),
-                    ]),
-                    child: Hero(
-                      tag: 'logo',
+                  Hero(
+                    tag: 'logo',
+                    child: Material(
+                      shape: CircleBorder(),
+                      elevation: 5,
                       child: CircleAvatar(
                         radius: 80,
                         backgroundColor: Colors.blue,

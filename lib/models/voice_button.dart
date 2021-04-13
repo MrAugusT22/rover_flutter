@@ -8,7 +8,6 @@ import 'package:flutter/widgets.dart';
 import 'dart:math';
 import 'package:be_extc/services/recognise_speech.dart';
 import 'package:be_extc/services/send_message.dart';
-import 'package:be_extc/utilities/dialog_box.dart';
 
 class VoiceButton extends StatefulWidget {
   static const String id = 'VoiceButton';
@@ -80,7 +79,7 @@ class _VoiceButtonState extends State<VoiceButton>
 
   double pi = 22 / 7;
 
-  void _updateRotation() => _rotation = _rotationController.value * 2 * pi;
+  void _updateRotation() => _rotation = _rotationController.value * 1.5 * pi;
   void _updateScale() => _scale = (_scaleController.value * 0.2) + 0.85;
 
   void animate() {
@@ -266,30 +265,19 @@ class _VoiceButtonState extends State<VoiceButton>
             alignment: Alignment.center,
             children: [
               Blob(
-                color: Color(0xff0092ff), // color blue
-                scale: _scale,
-                rotation: _rotation,
-              ),
+                  color: Color(0xff0092ff), scale: _scale, rotation: _rotation),
               Blob(
-                color: Color(0xff4ac7b7), // color green
-                scale: _scale,
-                rotation: _rotation * 2 - 30, // offset angle from _rotation
-              ),
+                  color: Color(0xff4ac7b7),
+                  scale: _scale,
+                  rotation: _rotation * 2 - 30),
               Blob(
-                color: Color(0xffa4a6f6), // color purple
-                scale: _scale,
-                rotation: _rotation * 3 - 45, // offset angle from _rotation
-              ),
+                  color: Color(0xffa4a6f6),
+                  scale: _scale,
+                  rotation: _rotation * 3 - 45),
               Blob(
-                color: Colors.amber, // color purple
-                scale: _scale,
-                rotation: _rotation * 4 - 45, // offset angle from _rotation
-              ),
-              Blob(
-                color: Color(0xffffffff), // color purple
-                scale: _scale,
-                rotation: _rotation * 4 - 45, // offset angle from _rotation
-              ),
+                  color: Color(0xffffffff),
+                  scale: _scale,
+                  rotation: _rotation * 4 - 45),
               Material(
                 elevation: 5,
                 shape: CircleBorder(),

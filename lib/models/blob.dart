@@ -23,17 +23,6 @@ class Blob extends StatelessWidget {
               bottomLeft: Radius.circular(220),
               bottomRight: Radius.circular(180),
             ),
-            // boxShadow: [
-            //   BoxShadow(
-            //     color: color,
-            //     blurRadius: 0.05,
-            //     // spreadRadius: 0.25,
-            //   ),
-            // ],
-            // border: Border.all(
-            //   color: color,
-            //   width: 2,
-            // ),
           ),
         ),
       ),
