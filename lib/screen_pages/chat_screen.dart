@@ -200,33 +200,3 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 }
-
-// Material(
-// elevation: 5,
-// shape: CircleBorder(),
-// child: Container(
-// decoration: BoxDecoration(
-// gradient: isTextFieldEmpty
-// ? isListening
-// ? kOfflineGradient
-//     : kOnlineUserMessageGradient
-//     : kOfflineGradient,
-// shape: BoxShape.circle),
-// child: RawMaterialButton(
-// shape: CircleBorder(),
-// elevation: 5,
-// constraints: BoxConstraints.tightFor(
-// width: 50,
-// height: 50,
-// ),
-// onPressed: () {
-// sendMessage(carData: messageStream);
-// },
-// child: _textEditingController.text.isEmpty
-// ? Icon(Icons.mic_rounded,
-// color: Colors.white, size: 40)
-// : Icon(Icons.keyboard_arrow_right_rounded,
-// color: Colors.white, size: 40),
-// ),
-// ),
-// )

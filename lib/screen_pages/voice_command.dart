@@ -101,24 +101,7 @@ class _CommandsState extends State<Commands> {
                 ],
               ),
               SizedBox(height: 10),
-              Row(
-                children: [
-                  CommandCard(
-                    tabController: widget.tabController,
-                    icon: Icons.stop,
-                    movement: '/Stop',
-                    list: 's',
-                  ),
-                  SizedBox(width: 10),
-                  CommandCard(
-                    tabController: widget.tabController,
-                    icon: Icons.refresh_rounded,
-                    movement: '/U Turn',
-                    list: 'u',
-                  )
-                ],
-              ),
-              SizedBox(height: 10),
+              //Recall and Reset Card
               Row(
                 children: [
                   CommandCard(
@@ -137,6 +120,14 @@ class _CommandsState extends State<Commands> {
                 ],
               ),
               SizedBox(height: 10),
+              CommandCard(
+                tabController: widget.tabController,
+                icon: Icons.stop,
+                movement: '/Stop',
+                list: 's',
+              ),
+              SizedBox(height: 10),
+              //Stack Slider
               Material(
                 elevation: 5,
                 borderRadius: BorderRadius.all(Radius.circular(20)),

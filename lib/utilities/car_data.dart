@@ -71,7 +71,6 @@ class CarData extends ChangeNotifier {
   List<String> _lCmds = ['left'];
   List<String> _rCmds = ['right'];
   List<String> _stopCmds = ['stop', 'brakes', 'brake', 'halt'];
-  List<String> _uTurnCmds = ['turn around', 'u turn'];
   List<String> _recallCmds = ['return'];
   List<String> _headlightsOn = [
     'lights on',
@@ -144,9 +143,6 @@ class CarData extends ChangeNotifier {
       case 's':
         _stopCmds.add(value);
         break;
-      case 'u':
-        _uTurnCmds.add(value);
-        break;
       case 're':
         _recallCmds.add(value);
         break;
@@ -186,9 +182,6 @@ class CarData extends ChangeNotifier {
       case 's':
         _stopCmds.removeAt(index);
         break;
-      case 'u':
-        _uTurnCmds.removeAt(index);
-        break;
       case 're':
         _recallCmds.removeAt(index);
         break;
@@ -227,9 +220,6 @@ class CarData extends ChangeNotifier {
         break;
       case 's':
         return _stopCmds;
-        break;
-      case 'u':
-        return _uTurnCmds;
         break;
       case 're':
         return _recallCmds;

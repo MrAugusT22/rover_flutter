@@ -39,7 +39,6 @@ class _CommandListState extends State<CommandList> {
             'a': Icons.alt_route_rounded,
             'c': Icons.trending_up_rounded,
             's': Icons.stop,
-            'u': Icons.refresh_rounded,
             're': Icons.sync_rounded,
             'res': Icons.close_rounded,
           };
@@ -54,7 +53,6 @@ class _CommandListState extends State<CommandList> {
             'a': '/AutoMode',
             'c': '/ControlMode',
             's': '/Stop',
-            'u': '/U Turn',
             're': '/Recall',
             'res': '/Reset',
           };
@@ -70,7 +68,6 @@ class _CommandListState extends State<CommandList> {
                 '$kMyProjectName will find a obstacle free path automatically.',
             'c': 'Let\'s you control the $kMyProjectName fully',
             's': 'Stops instantly.',
-            'u': 'Makes a U turn.',
             're':
                 '$kMyProjectName will return back executing the previous commands.',
             'res':
@@ -101,11 +98,14 @@ class _CommandListState extends State<CommandList> {
                               ),
                               child: ListTile(
                                 leading: Icon(Icons.info_outline_rounded),
-                                title: Text(
-                                  '${info[l]}',
-                                  style: TextStyle(
-                                      fontFamily: 'RobotoMono',
-                                      fontWeight: FontWeight.bold),
+                                title: Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 10),
+                                  child: Text(
+                                    '${info[l]}',
+                                    style: TextStyle(
+                                        fontFamily: 'RobotoMono',
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ),
                               ),
                             ),

@@ -19,7 +19,6 @@ class RecogniseMessage {
     List a = Provider.of<CarData>(context, listen: false).getCmdList('a');
     List c = Provider.of<CarData>(context, listen: false).getCmdList('c');
     List s = Provider.of<CarData>(context, listen: false).getCmdList('s');
-    List u = Provider.of<CarData>(context, listen: false).getCmdList('u');
     List re = Provider.of<CarData>(context, listen: false).getCmdList('re');
     List res = Provider.of<CarData>(context, listen: false).getCmdList('res');
 
@@ -32,7 +31,6 @@ class RecogniseMessage {
     final String leftRegEx = '(${l.join('|')})';
     final String rightRegEx = '(${r.join('|')})';
     final String stopRegEx = '(${s.join('|')})';
-    final String uTurnRegEx = '(${u.join('|')})';
     final String recallRegex = '(${re.join('|')})';
     final String resetRegex = '(${res.join('|')})';
     final String dist = r'\d{1,}';
@@ -46,7 +44,6 @@ class RecogniseMessage {
     final RegExp left = RegExp(leftRegEx);
     final RegExp right = RegExp(rightRegEx);
     final RegExp stop = RegExp(stopRegEx);
-    final RegExp uTurn = RegExp(uTurnRegEx);
     final RegExp recall = RegExp(recallRegex);
     final RegExp reset = RegExp(resetRegex);
     final RegExp distance = RegExp(dist);
@@ -140,15 +137,6 @@ class RecogniseMessage {
         move: false,
       );
       Provider.of<CarData>(context, listen: false).toggleMovement('s');
-    } else if (uTurn.hasMatch(input)) {
-      // U turn
-      Provider.of<CarData>(context, listen: false).move(
-        fb: 0,
-        lr: 0,
-        dist: isDist ? distance.stringMatch(input).toString() : defaultDist,
-        move: true,
-      );
-      Provider.of<CarData>(context, listen: false).toggleMovement('u');
     } else if (recall.hasMatch(input)) {
       // Recall
       Provider.of<CarData>(context, listen: false).toggleMovement('re');
@@ -176,22 +164,4 @@ class RecogniseMessage {
       Provider.of<CarData>(context, listen: false).toggleMovement('e');
     }
   }
-
-  // Future buildBottomSheet(BuildContext context) {
-  //   return showModalBottomSheet(
-  //     backgroundColor: Colors.transparent,
-  //     shape: RoundedRectangleBorder(
-  //         borderRadius: BorderRadius.only(
-  //             topLeft: Radius.circular(30), topRight: Radius.circular(30))),
-  //     isScrollControlled: true,
-  //     context: context,
-  //     builder: (context) => SingleChildScrollView(
-  //       child: Container(
-  //         padding:
-  //             EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-  //         child: ExitBottomSheet(),
-  //       ),
-  //     ),
-  //   );
-  // }
 }
