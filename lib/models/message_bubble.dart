@@ -48,29 +48,18 @@ class Bubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(left: 10, right: 10),
-      child: Column(
-        crossAxisAlignment:
-            isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Material(
-            elevation: 5,
-            shape: RoundedRectangleBorder(
-              borderRadius: isVoice
-                  ? BorderRadius.circular(20)
-                  : BorderRadius.only(
-                      topLeft: isMe ? Radius.circular(20) : Radius.circular(0),
-                      topRight: Radius.circular(20),
-                      bottomLeft: Radius.circular(20),
-                      bottomRight:
-                          isMe ? Radius.circular(0) : Radius.circular(20),
-                    ),
-            ),
-            child: Container(
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
+    return Container(
+      margin: isMe ? EdgeInsets.symmetric(vertical: 5) : EdgeInsets.all(0),
+      child: Padding(
+        padding: EdgeInsets.only(left: 10, right: 10),
+        child: Column(
+          crossAxisAlignment:
+              isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Material(
+              elevation: 5,
+              shape: RoundedRectangleBorder(
                 borderRadius: isVoice
                     ? BorderRadius.circular(20)
                     : BorderRadius.only(
@@ -81,65 +70,81 @@ class Bubble extends StatelessWidget {
                         bottomRight:
                             isMe ? Radius.circular(0) : Radius.circular(20),
                       ),
-                gradient: isMe ? kOfflineGradient : kOnlineUserMessageGradient,
               ),
-              child: Stack(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      isVoice ? Icon(Icons.mic_rounded) : Container(),
-                      isVoice ? SizedBox(width: 10) : Container(),
-                      Column(
-                        crossAxisAlignment: isMe
-                            ? CrossAxisAlignment.end
-                            : CrossAxisAlignment.start,
-                        children: [
-                          isMe
-                              ? Container()
-                              : Text(sender,
-                                  style: TextStyle(
-                                      fontSize: 10,
-                                      fontFamily: 'RobotoMono',
-                                      color: Colors.white60)),
-                          isMe ? Container() : SizedBox(height: 5),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                constraints: BoxConstraints(
-                                    maxWidth:
-                                        MediaQuery.of(context).size.width *
-                                            0.5),
-                                child: Text(messageText,
-                                    style: TextStyle(fontSize: 17)),
-                              ),
-                              SizedBox(width: 55),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: Text(
-                      '$time',
-                      style: TextStyle(
-                        fontFamily: 'RobotoMono',
-                        fontSize: 10,
-                        color: Colors.white60,
-                      ),
+              child: Container(
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  borderRadius: isVoice
+                      ? BorderRadius.circular(20)
+                      : BorderRadius.only(
+                          topLeft:
+                              isMe ? Radius.circular(20) : Radius.circular(0),
+                          topRight: Radius.circular(20),
+                          bottomLeft: Radius.circular(20),
+                          bottomRight:
+                              isMe ? Radius.circular(0) : Radius.circular(20),
+                        ),
+                  gradient:
+                      isMe ? kOfflineGradient : kOnlineUserMessageGradient,
+                ),
+                child: Stack(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        isVoice ? Icon(Icons.mic_rounded) : Container(),
+                        isVoice ? SizedBox(width: 10) : Container(),
+                        Column(
+                          crossAxisAlignment: isMe
+                              ? CrossAxisAlignment.end
+                              : CrossAxisAlignment.start,
+                          children: [
+                            isMe
+                                ? Container()
+                                : Text(sender,
+                                    style: TextStyle(
+                                        fontSize: 10,
+                                        fontFamily: 'RobotoMono',
+                                        color: Colors.white60)),
+                            isMe ? Container() : SizedBox(height: 5),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  constraints: BoxConstraints(
+                                      maxWidth:
+                                          MediaQuery.of(context).size.width *
+                                              0.5),
+                                  child: Text(messageText,
+                                      style: TextStyle(fontSize: 17)),
+                                ),
+                                SizedBox(width: 55),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                  )
-                ],
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: Text(
+                        '$time',
+                        style: TextStyle(
+                          fontFamily: 'RobotoMono',
+                          fontSize: 10,
+                          color: Colors.white60,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

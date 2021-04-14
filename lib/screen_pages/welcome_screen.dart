@@ -48,6 +48,7 @@ class _WelcomePageState extends State<WelcomePage>
     _scaleController.addListener(() {
       setState(() {
         _updateScale();
+        print(_rotation);
       });
     });
     _scaleController.forward();
