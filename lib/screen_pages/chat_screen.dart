@@ -156,7 +156,6 @@ class _ChatScreenState extends State<ChatScreen> {
                                 children: [
                                   GestureDetector(
                                     onTap: () {
-                                      print('Joystick');
                                       joystick();
                                     },
                                     child: Icon(Icons.gamepad_rounded,

@@ -58,7 +58,7 @@ final LinearGradient kOfflineGradient = LinearGradient(
   end: Alignment.bottomRight,
 );
 
-final LinearGradient kCancelButtonGradient = LinearGradient(
+final LinearGradient kErrorGradient = LinearGradient(
   colors: kCancelButtonGradientColor,
   begin: Alignment.topLeft,
   end: Alignment.bottomRight,

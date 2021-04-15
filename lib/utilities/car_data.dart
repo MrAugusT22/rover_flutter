@@ -7,7 +7,7 @@ class CarData extends ChangeNotifier {
 
   int _fb = 0;
   int _lr = 0;
-  String _dist = '0';
+  int _dist = 0;
   bool _isDist = false;
 
   bool _isHeadlightOn = false;
@@ -272,7 +272,7 @@ class CarData extends ChangeNotifier {
   void reset() {
     _fb = 0;
     _lr = 0;
-    _dist = '0';
+    _dist = 0;
     _list = 'f';
     _movementStackSize = 5;
     _movementStack = [];
@@ -280,7 +280,7 @@ class CarData extends ChangeNotifier {
     _isAutoMode = false;
   }
 
-  void move({int fb, int lr, String dist, bool move}) {
+  void move({int fb, int lr, int dist, bool move}) {
     _fb = fb;
     _lr = lr;
     _dist = dist;
@@ -290,7 +290,7 @@ class CarData extends ChangeNotifier {
     }
   }
 
-  String get getDistance {
+  int get getDistance {
     return _dist;
   }
 

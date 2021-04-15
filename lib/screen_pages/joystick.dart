@@ -96,6 +96,7 @@ class _JoystickState extends State<Joystick> {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        //forward
                         JoystickButtons(
                           iconData: Icons.arrow_upward_rounded,
                           onPressedDown: (value) {
@@ -106,7 +107,7 @@ class _JoystickState extends State<Joystick> {
                             carData.move(
                               fb: 1,
                               lr: 0,
-                              dist: '1000',
+                              dist: 1000,
                               move: true,
                             );
                             String state = carData.getState;
@@ -120,7 +121,7 @@ class _JoystickState extends State<Joystick> {
                             carData.move(
                               fb: 0,
                               lr: 0,
-                              dist: '0',
+                              dist: 0,
                               move: false,
                             );
                             String state = carData.getState;
@@ -139,7 +140,7 @@ class _JoystickState extends State<Joystick> {
                             carData.move(
                               fb: -1,
                               lr: 0,
-                              dist: '1000',
+                              dist: 1000,
                               move: true,
                             );
                             String state = carData.getState;
@@ -153,7 +154,7 @@ class _JoystickState extends State<Joystick> {
                             carData.move(
                               fb: 0,
                               lr: 0,
-                              dist: '0',
+                              dist: 0,
                               move: false,
                             );
                             String state = carData.getState;
@@ -173,7 +174,7 @@ class _JoystickState extends State<Joystick> {
                         carData.move(
                           fb: 0,
                           lr: 0,
-                          dist: '-1',
+                          dist: -1,
                           move: true,
                         );
                         String state = carData.getState;
@@ -187,7 +188,7 @@ class _JoystickState extends State<Joystick> {
                         carData.move(
                           fb: 0,
                           lr: 0,
-                          dist: '0',
+                          dist: 0,
                           move: false,
                         );
                         String state = carData.getState;
@@ -210,7 +211,7 @@ class _JoystickState extends State<Joystick> {
                         carData.move(
                           fb: 0,
                           lr: -1,
-                          dist: '1000',
+                          dist: 1000,
                           move: true,
                         );
                         String state = carData.getState;
@@ -224,7 +225,7 @@ class _JoystickState extends State<Joystick> {
                         carData.move(
                           fb: 0,
                           lr: 0,
-                          dist: '0',
+                          dist: 0,
                           move: false,
                         );
                         String state = carData.getState;
@@ -248,7 +249,7 @@ class _JoystickState extends State<Joystick> {
                             carData.move(
                               fb: -2,
                               lr: -2,
-                              dist: '5',
+                              dist: 5,
                               move: false,
                             );
                             String state = carData.getState;
@@ -268,7 +269,7 @@ class _JoystickState extends State<Joystick> {
                             carData.move(
                               fb: -2,
                               lr: -2,
-                              dist: '5',
+                              dist: 5,
                               move: false,
                             );
                             String state = carData.getState;
@@ -289,7 +290,7 @@ class _JoystickState extends State<Joystick> {
                         carData.move(
                           fb: 0,
                           lr: 1,
-                          dist: '1000',
+                          dist: 1000,
                           move: true,
                         );
                         String state = carData.getState;
@@ -303,7 +304,7 @@ class _JoystickState extends State<Joystick> {
                         carData.move(
                           fb: 0,
                           lr: 0,
-                          dist: '0',
+                          dist: 0,
                           move: false,
                         );
                         String state = carData.getState;

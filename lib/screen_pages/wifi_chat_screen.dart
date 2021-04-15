@@ -43,6 +43,7 @@ class _WifiChatScreenState extends State<WifiChatScreen>
     String url = 'http://$ip/?State=$state';
     http.get(url);
     print(state);
+    print('message sent');
   }
 
   @override

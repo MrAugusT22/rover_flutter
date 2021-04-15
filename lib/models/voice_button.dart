@@ -45,7 +45,7 @@ class _VoiceButtonState extends State<VoiceButton>
 
   bool hl;
   bool autoMode;
-  String _dist;
+  int _dist;
   bool _isDist;
 
   bool tapped = false;
@@ -117,11 +117,12 @@ class _VoiceButtonState extends State<VoiceButton>
         sender: 'rov3R',
         isMe: false,
         time: formatTimestamp(DateTime.now()),
+        error: true,
       ));
     } else {
       if (m == 'h1' || m == 'h2') {
         carData.addMessage(MessageBubble(
-          messageText: 'Headlights ${hl ? 'On' : 'Off'}',
+          messageText: 'Turned Headlights ${hl ? 'On' : 'Off'}.',
           isVoice: false,
           sender: 'rov3R',
           isMe: false,
@@ -137,7 +138,7 @@ class _VoiceButtonState extends State<VoiceButton>
         ));
       } else if (m == 's') {
         carData.addMessage(MessageBubble(
-          messageText: 'Stopped myself',
+          messageText: 'Stopped myself.',
           isVoice: false,
           sender: 'rov3R',
           isMe: false,
@@ -145,7 +146,7 @@ class _VoiceButtonState extends State<VoiceButton>
         ));
       } else if (m == 'u') {
         carData.addMessage(MessageBubble(
-          messageText: 'Turning around',
+          messageText: 'Turning around.',
           isVoice: false,
           sender: 'rov3R',
           isMe: false,
@@ -153,7 +154,7 @@ class _VoiceButtonState extends State<VoiceButton>
         ));
       } else if (m == 're') {
         carData.addMessage(MessageBubble(
-          messageText: 'Coming back Chief',
+          messageText: 'Coming back Chief.',
           isVoice: false,
           sender: 'rov3R',
           isMe: false,
@@ -161,7 +162,7 @@ class _VoiceButtonState extends State<VoiceButton>
         ));
       } else if (m == 'res') {
         carData.addMessage(MessageBubble(
-          messageText: 'Reset all values Chief',
+          messageText: 'Reset all values Chief.',
           isVoice: false,
           sender: 'rov3R',
           isMe: false,
@@ -184,13 +185,24 @@ class _VoiceButtonState extends State<VoiceButton>
           isMe: false,
           time: formatTimestamp(DateTime.now()),
         ));
-      } else {
+      } else if (_dist != 0) {
         carData.addMessage(MessageBubble(
-          messageText: 'Moving ${move[m]} ${_isDist ? '$_dist units' : ''}',
+          messageText:
+              'Moving ${move[m]}${_isDist ? ' $_dist ${_dist == 1 ? 'foot' : 'feet'}' : ''}.',
           isVoice: false,
           sender: 'rov3R',
           isMe: false,
           time: formatTimestamp(DateTime.now()),
+        ));
+      } else {
+        carData.addMessage(MessageBubble(
+          messageText:
+              'Chief movement distance is not a positive non zero integer!!! Try to send a positive non zero integer.',
+          isVoice: false,
+          sender: 'rov3R',
+          isMe: false,
+          time: formatTimestamp(DateTime.now()),
+          error: true,
         ));
       }
     }
@@ -198,7 +210,6 @@ class _VoiceButtonState extends State<VoiceButton>
 
   void sendMessage({@required CarData carData}) {
     setState(() {
-      print(carData.getState);
       if (widget.textEditingController.text.isEmpty) {
         animate();
         _recogniseSpeech.listen();
@@ -241,7 +252,6 @@ class _VoiceButtonState extends State<VoiceButton>
 
     if (carData.getMovement != 'e') {
       widget.sendState(state);
-      print('message sent');
     }
   }
 

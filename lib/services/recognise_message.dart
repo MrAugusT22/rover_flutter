@@ -7,8 +7,6 @@ class RecogniseMessage {
   final BuildContext context;
   RecogniseMessage({@required this.context});
 
-  String defaultDist = '5';
-
   void recogniseMessage({String input}) {
     List f = Provider.of<CarData>(context, listen: false).getCmdList('f');
     List b = Provider.of<CarData>(context, listen: false).getCmdList('b');
@@ -33,7 +31,7 @@ class RecogniseMessage {
     final String stopRegEx = '(${s.join('|')})';
     final String recallRegex = '(${re.join('|')})';
     final String resetRegex = '(${res.join('|')})';
-    final String dist = r'\d{1,}';
+    final String negDist = r'.*-\d{1,}';
 
     final RegExp headlightOn = RegExp(headlightsOnRegEx);
     final RegExp headlightOff = RegExp(headlightsOffRegEx);
@@ -46,122 +44,144 @@ class RecogniseMessage {
     final RegExp stop = RegExp(stopRegEx);
     final RegExp recall = RegExp(recallRegex);
     final RegExp reset = RegExp(resetRegex);
-    final RegExp distance = RegExp(dist);
+    final RegExp negDistance = RegExp(negDist);
 
-    bool isDist = distance.hasMatch(input);
-    Provider.of<CarData>(context, listen: false).toggleDistance(isDist);
+    bool negativeDist = negDistance.hasMatch(input);
+    bool isDist = false;
+    int distValue = 5;
 
-    if (headlightOff.hasMatch(input)) {
-      //Headlights Off
-      print('off');
-      Provider.of<CarData>(context, listen: false).move(
-        fb: -2,
-        lr: -2,
-        dist: isDist ? distance.stringMatch(input).toString() : defaultDist,
-        move: false,
-      );
-      Provider.of<CarData>(context, listen: false).toggleHeadLight(false);
-      Provider.of<CarData>(context, listen: false).toggleMovement('h2');
-    } else if (headlightOn.hasMatch(input)) {
-      //Headlights On
-      Provider.of<CarData>(context, listen: false).move(
-        fb: -2,
-        lr: -2,
-        dist: isDist ? distance.stringMatch(input).toString() : defaultDist,
-        move: false,
-      );
-      Provider.of<CarData>(context, listen: false).toggleHeadLight(true);
-      Provider.of<CarData>(context, listen: false).toggleMovement('h1');
-    } else if (autoMode.hasMatch(input)) {
-      //AutoMode
-      Provider.of<CarData>(context, listen: false).move(
-        fb: -2,
-        lr: -2,
-        dist: isDist ? distance.stringMatch(input).toString() : defaultDist,
-        move: false,
-      );
-      Provider.of<CarData>(context, listen: false).toggleAutoMode(true);
-      Provider.of<CarData>(context, listen: false).toggleMovement('a');
-    } else if (controlMode.hasMatch(input)) {
-      //ControlMode
-      Provider.of<CarData>(context, listen: false).move(
-        fb: -2,
-        lr: -2,
-        dist: isDist ? distance.stringMatch(input).toString() : defaultDist,
-        move: false,
-      );
-      Provider.of<CarData>(context, listen: false).toggleAutoMode(false);
-      Provider.of<CarData>(context, listen: false).toggleMovement('c');
-    } else if (front.hasMatch(input)) {
-      // Front
-      Provider.of<CarData>(context, listen: false).move(
-        fb: 1,
-        lr: 0,
-        dist: isDist ? distance.stringMatch(input).toString() : defaultDist,
-        move: true,
-      );
-      Provider.of<CarData>(context, listen: false).toggleMovement('f');
-    } else if (back.hasMatch(input)) {
-      //Back
-      Provider.of<CarData>(context, listen: false).move(
-        fb: -1,
-        lr: 0,
-        dist: isDist ? distance.stringMatch(input).toString() : defaultDist,
-        move: true,
-      );
-      Provider.of<CarData>(context, listen: false).toggleMovement('b');
-    } else if (left.hasMatch(input)) {
-      //Left
-      Provider.of<CarData>(context, listen: false).move(
-        fb: 0,
-        lr: -1,
-        dist: isDist ? distance.stringMatch(input).toString() : defaultDist,
-        move: true,
-      );
-      Provider.of<CarData>(context, listen: false).toggleMovement('l');
-    } else if (right.hasMatch(input)) {
-      //Right
-      Provider.of<CarData>(context, listen: false).move(
-        fb: 0,
-        lr: 1,
-        dist: isDist ? distance.stringMatch(input).toString() : defaultDist,
-        move: true,
-      );
-      Provider.of<CarData>(context, listen: false).toggleMovement('r');
-    } else if (stop.hasMatch(input)) {
-      //Stop
-      Provider.of<CarData>(context, listen: false).move(
-        fb: 0,
-        lr: 0,
-        dist: isDist ? distance.stringMatch(input).toString() : '0',
-        move: false,
-      );
-      Provider.of<CarData>(context, listen: false).toggleMovement('s');
-    } else if (recall.hasMatch(input)) {
-      // Recall
-      Provider.of<CarData>(context, listen: false).toggleMovement('re');
-      print('recall detected');
-    } else if (reset.hasMatch(input)) {
-      // Reset
-      Provider.of<CarData>(context, listen: false).move(
-        fb: 0,
-        lr: 0,
-        dist: '0',
-        move: false,
-      );
-      Provider.of<CarData>(context, listen: false).reset();
-      Provider.of<CarData>(context, listen: false).toggleMovement('res');
-      print('reset detected');
+    if (!negativeDist) {
+      final String dist = r'\d{1,}';
+      final RegExp distance = RegExp(dist);
+      isDist = distance.hasMatch(input);
+      if (isDist) {
+        distValue = int.parse(distance.stringMatch(input));
+      }
+
+      Provider.of<CarData>(context, listen: false).toggleDistance(isDist);
+
+      if (headlightOff.hasMatch(input)) {
+        //Headlights Off
+        print('off');
+        Provider.of<CarData>(context, listen: false).move(
+          fb: -2,
+          lr: -2,
+          dist: distValue,
+          move: false,
+        );
+        Provider.of<CarData>(context, listen: false).toggleHeadLight(false);
+        Provider.of<CarData>(context, listen: false).toggleMovement('h2');
+      } else if (headlightOn.hasMatch(input)) {
+        //Headlights On
+        Provider.of<CarData>(context, listen: false).move(
+          fb: -2,
+          lr: -2,
+          dist: distValue,
+          move: false,
+        );
+        Provider.of<CarData>(context, listen: false).toggleHeadLight(true);
+        Provider.of<CarData>(context, listen: false).toggleMovement('h1');
+      } else if (controlMode.hasMatch(input)) {
+        //ControlMode
+        Provider.of<CarData>(context, listen: false).move(
+          fb: -2,
+          lr: -2,
+          dist: distValue,
+          move: false,
+        );
+        Provider.of<CarData>(context, listen: false).toggleAutoMode(false);
+        Provider.of<CarData>(context, listen: false).toggleMovement('c');
+      } else if (autoMode.hasMatch(input)) {
+        //AutoMode
+        Provider.of<CarData>(context, listen: false).move(
+          fb: -2,
+          lr: -2,
+          dist: distValue,
+          move: false,
+        );
+        Provider.of<CarData>(context, listen: false).toggleAutoMode(true);
+        Provider.of<CarData>(context, listen: false).toggleMovement('a');
+      } else if (front.hasMatch(input)) {
+        // Front
+        Provider.of<CarData>(context, listen: false).move(
+          fb: 1,
+          lr: 0,
+          dist: distValue,
+          move: true,
+        );
+        Provider.of<CarData>(context, listen: false).toggleMovement('f');
+      } else if (back.hasMatch(input)) {
+        //Back
+        Provider.of<CarData>(context, listen: false).move(
+          fb: -1,
+          lr: 0,
+          dist: distValue,
+          move: true,
+        );
+        Provider.of<CarData>(context, listen: false).toggleMovement('b');
+      } else if (left.hasMatch(input)) {
+        //Left
+        Provider.of<CarData>(context, listen: false).move(
+          fb: 0,
+          lr: -1,
+          dist: distValue,
+          move: true,
+        );
+        Provider.of<CarData>(context, listen: false).toggleMovement('l');
+      } else if (right.hasMatch(input)) {
+        //Right
+        Provider.of<CarData>(context, listen: false).move(
+          fb: 0,
+          lr: 1,
+          dist: distValue,
+          move: true,
+        );
+        Provider.of<CarData>(context, listen: false).toggleMovement('r');
+      } else if (stop.hasMatch(input)) {
+        //Stop
+        Provider.of<CarData>(context, listen: false).move(
+          fb: 0,
+          lr: 0,
+          dist: isDist ? distValue : 0,
+          move: false,
+        );
+        Provider.of<CarData>(context, listen: false).toggleMovement('s');
+      } else if (recall.hasMatch(input)) {
+        // Recall
+        Provider.of<CarData>(context, listen: false).toggleMovement('re');
+        print('recall detected');
+      } else if (reset.hasMatch(input)) {
+        // Reset
+        Provider.of<CarData>(context, listen: false).move(
+          fb: 0,
+          lr: 0,
+          dist: 0,
+          move: false,
+        );
+        Provider.of<CarData>(context, listen: false).reset();
+        Provider.of<CarData>(context, listen: false).toggleMovement('res');
+        print('reset detected');
+      } else {
+        // Not recognized
+        print('e');
+        Provider.of<CarData>(context, listen: false).move(
+          fb: 0,
+          lr: 0,
+          dist: 0,
+          move: false,
+        );
+        Provider.of<CarData>(context, listen: false).toggleMovement('e');
+      }
     } else {
       // Not recognized
-      print('e');
+      print('n');
       Provider.of<CarData>(context, listen: false).move(
         fb: 0,
         lr: 0,
-        dist: '0',
+        dist: 0,
         move: false,
       );
-      Provider.of<CarData>(context, listen: false).toggleMovement('e');
+      Provider.of<CarData>(context, listen: false).toggleMovement('n');
     }
   }
 }

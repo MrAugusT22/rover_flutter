@@ -9,6 +9,7 @@ class MessageBubble extends StatelessWidget {
   final bool isMe;
   final bool isVoice;
   final bool isOffline;
+  final bool error;
 
   MessageBubble({
     this.messageText,
@@ -17,16 +18,19 @@ class MessageBubble extends StatelessWidget {
     this.time,
     this.isVoice,
     this.isOffline,
+    this.error = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return Bubble(
-        isMe: isMe,
-        isVoice: isVoice,
-        sender: sender,
-        messageText: messageText,
-        time: time);
+      isMe: isMe,
+      isVoice: isVoice,
+      sender: sender,
+      messageText: messageText,
+      time: time,
+      error: error,
+    );
   }
 }
 
@@ -38,6 +42,7 @@ class Bubble extends StatelessWidget {
     @required this.sender,
     @required this.messageText,
     @required this.time,
+    @required this.error,
   }) : super(key: key);
 
   final bool isMe;
@@ -45,6 +50,7 @@ class Bubble extends StatelessWidget {
   final String sender;
   final String messageText;
   final time;
+  final bool error;
 
   @override
   Widget build(BuildContext context) {
@@ -109,9 +115,13 @@ class Bubble extends StatelessWidget {
                                         color: Colors.white60)),
                             isMe ? Container() : SizedBox(height: 5),
                             Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
+                                error
+                                    ? Icon(Icons.error_outline_rounded)
+                                    : Container(),
+                                error ? SizedBox(width: 10) : Container(),
                                 Container(
                                   constraints: BoxConstraints(
                                       maxWidth:
@@ -138,7 +148,7 @@ class Bubble extends StatelessWidget {
                           color: Colors.white60,
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
