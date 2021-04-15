@@ -79,6 +79,7 @@ class _JoystickState extends State<Joystick> {
                     JoystickButtons(
                       iconData: Icons.sync_rounded,
                       onPressedDown: (value) {
+                        HapticFeedback.mediumImpact();
                         print('pressed');
                         setState(() {
                           re = true;
@@ -100,6 +101,7 @@ class _JoystickState extends State<Joystick> {
                         JoystickButtons(
                           iconData: Icons.arrow_upward_rounded,
                           onPressedDown: (value) {
+                            HapticFeedback.mediumImpact();
                             print('pressed');
                             setState(() {
                               f = true;
@@ -133,6 +135,7 @@ class _JoystickState extends State<Joystick> {
                         JoystickButtons(
                           iconData: Icons.arrow_downward_rounded,
                           onPressedDown: (value) {
+                            HapticFeedback.mediumImpact();
                             print('pressed');
                             setState(() {
                               b = true;
@@ -167,6 +170,7 @@ class _JoystickState extends State<Joystick> {
                     JoystickButtons(
                       iconData: Icons.refresh_rounded,
                       onPressedDown: (value) {
+                        HapticFeedback.mediumImpact();
                         print('u turn pressed');
                         setState(() {
                           u = true;
@@ -204,6 +208,7 @@ class _JoystickState extends State<Joystick> {
                     JoystickButtons(
                       iconData: Icons.arrow_back_rounded,
                       onPressedDown: (value) {
+                        HapticFeedback.mediumImpact();
                         print('pressed');
                         setState(() {
                           l = true;
@@ -241,6 +246,7 @@ class _JoystickState extends State<Joystick> {
                               ? Icons.alt_route_rounded
                               : Icons.trending_up_rounded,
                           onPressedDown: (value) {
+                            HapticFeedback.mediumImpact();
                             print('pressed');
                             setState(() {
                               autoMode = !autoMode;
@@ -261,6 +267,7 @@ class _JoystickState extends State<Joystick> {
                         JoystickButtons(
                           iconData: Icons.flash_on_rounded,
                           onPressedDown: (value) {
+                            HapticFeedback.mediumImpact();
                             print('pressed');
                             setState(() {
                               hl = !hl;
@@ -283,6 +290,7 @@ class _JoystickState extends State<Joystick> {
                     JoystickButtons(
                       iconData: Icons.arrow_forward_rounded,
                       onPressedDown: (value) {
+                        HapticFeedback.mediumImpact();
                         print('pressed');
                         setState(() {
                           r = true;

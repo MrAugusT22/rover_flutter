@@ -8,6 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'dart:math';
 import 'package:be_extc/services/recognise_speech.dart';
 import 'package:be_extc/services/send_message.dart';
+import 'package:flutter/services.dart';
 
 class VoiceButton extends StatefulWidget {
   static const String id = 'VoiceButton';
@@ -171,7 +172,7 @@ class _VoiceButtonState extends State<VoiceButton>
       } else if (m == 'a') {
         carData.addMessage(MessageBubble(
           messageText:
-              'Thank you for making me independent. Finding my on way Chief! 😉',
+              'Thank you for making me independent. Finding my own way Chief! 😉',
           isVoice: false,
           sender: 'rov3R',
           isMe: false,
@@ -306,6 +307,7 @@ class _VoiceButtonState extends State<VoiceButton>
                   constraints: BoxConstraints.tightFor(width: 56, height: 56),
                   child: GestureDetector(
                     onTap: () {
+                      HapticFeedback.mediumImpact();
                       tapped = true;
                       sendMessage(carData: carData);
                     },

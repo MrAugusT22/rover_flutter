@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:be_extc/screen_pages/wifi_chat_screen.dart';
 import 'package:be_extc/models/message_bubble.dart';
 import 'package:be_extc/models/blob.dart';
+import 'package:flutter/services.dart';
 
 enum connectivityMode { bluetooth, wifi }
 
@@ -172,6 +173,7 @@ class _WelcomePageState extends State<WelcomePage>
                   buttonText:
                       Text('GET STARTED', style: kWelcomePageButtonTextStyle),
                   onPressed: () {
+                    HapticFeedback.mediumImpact();
                     getStarted(carData);
                   },
                 ),

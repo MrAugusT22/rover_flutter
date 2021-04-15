@@ -1,6 +1,7 @@
 import 'package:be_extc/utilities/car_data.dart';
 import 'package:be_extc/utilities/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class Commands extends StatefulWidget {
@@ -196,6 +197,7 @@ class _CommandsState extends State<Commands> {
                                         max: 20,
                                         value: v,
                                         onChanged: (value) {
+                                          HapticFeedback.mediumImpact();
                                           setState(() {
                                             print(value);
                                             v = value;
